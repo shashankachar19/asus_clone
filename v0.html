@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASUS Official - Premium Laptops & Gaming</title>
+    <meta name="description" content="Discover ASUS premium laptops including ROG gaming series, Zenbook ultrabooks, and professional workstations. Innovation meets performance.">
+    <meta name="theme-color" content="#00539b">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00539b;
+            --primary-foreground: #ffffff;
+            --secondary: #1f2937;
+            --secondary-foreground: #ffffff;
+            --background: #ffffff;
+            --foreground: #000000;
+            --card: #ffffff;
+            --card-foreground: #000000;
+            --muted: #f3f4f6;
+            --muted-foreground: #6b7280;
+            --border: #e5e7eb;
+            --input: #f9fafb;
+            --radius: 0.5rem;
+        }
+
+        body.dark {
+            --background: #0f172a;
+            --foreground: #ffffff;
+            --card: #1e293b;
+            --card-foreground: #ffffff;
+            --muted: #334155;
+            --muted-foreground: #94a3b8;
+            --border: #334155;
+            --input: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: transparent;
+            transition: all 0.3s;
+            padding: 1rem 0;
+        }
+
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        nav.dark.scrolled {
+            background-color: rgba(15, 23, 42, 0.8);
+        }
+
+        .nav-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--foreground);
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            background-color: var(--primary);
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--foreground);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--foreground);
+            transition: all 0.3s;
+            border-radius: 0.5rem;
+        }
+
+        .nav-icon-btn:hover {
+            background-color: var(--muted);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--background);
+            border-top: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: var(--foreground);
+            font-size: 0.875rem;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            margin-top: 5rem;
+            background: linear-gradient(135deg, #1f2937 0%, rgba(0, 83, 155, 0.1) 50%, #1f2937 100%);
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .hero-slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+            z-index: 10;
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 83, 155, 0.1);
+            border: 1px solid rgba(0, 83, 155, 0.3);
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #003d7a;
+            box-shadow: 0 10px 25px rgba(0, 83, 155, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 83, 155, 0.05);
+        }
+
+        .hero-indicators {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            z-index: 20;
+        }
+
+        .indicator {
+            height: 0.5rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .indicator.active {
+            background-color: var(--primary);
+            width: 2rem;
+        }
+
+        .indicator:not(.active) {
+            width: 0.5rem;
+        }
+
+        .indicator:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+            z-index: 20;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-arrow-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-arrow-btn.prev {
+            left: 1.5rem;
+        }
+
+        .hero-arrow-btn.next {
+            right: 1.5rem;
+        }
+
+        /* TUF Gaming Section */
+        .tuf-section {
+            padding: 6rem 1.5rem;
+            background-color: var(--background);
+        }
+
+        .tuf-container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 83, 155, 0.1);
+            border: 1px solid rgba(0, 83, 155, 0.3);
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--foreground);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            max-width: 42rem;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        .tuf-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .tuf-specs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .spec-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .spec-icon {
+            padding: 0.75rem;
+            background-color: rgba(0, 83, 155, 0.1);
+            border-radius: 0.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .spec-item h3 {
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 0.25rem;
+        }
+
+        .spec-item p {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .tuf-card {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tuf-card:hover {
+            box-shadow: 0 20px 50px rgba(0, 83, 155, 0.2);
+            transform: scale(1.05);
+        }
+
+        .tuf-image-container {
+            aspect-ratio: 16 / 9;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 83, 155, 0.2) 0%, rgba(0, 83, 155, 0.05) 100%);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tuf-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tuf-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .tuf-card .model-year {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+        }
+
+        .tuf-display-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 83, 155, 0.2);
+            border: 1px solid rgba(0, 83, 155, 0.4);
+            border-radius: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .tuf-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--foreground);
+        }
+
+        .metric-value {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .metric-bar {
+            height: 0.5rem;
+            background-color: var(--muted);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .metric-fill {
+            height: 100%;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .tuf-compare-btn {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Product Grid */
+        .products-section {
+            padding: 6rem 1.5rem;
+            background-color: var(--background);
+        }
+
+        .products-container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--card);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 12rem;
+            background-color: var(--muted);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 2rem;
+        }
+
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--foreground);
+            margin-bottom: 0.25rem;
+        }
+
+        .product-category {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .product-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(0, 83, 155, 0.1);
+            border-radius: 9999px;
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .compare-btn {
+            padding: 0.5rem;
+            background-color: var(--muted);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--foreground);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compare-btn:hover {
+            background-color: rgba(0, 83, 155, 0.1);
+        }
+
+        .compare-btn.selected {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .product-specs {
+            margin-bottom: 2rem;
+            space-y: 0.75rem;
+        }
+
+        .spec {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            margin-bottom: 0.75rem;
+        }
+
+        .spec-dot {
+            width: 0.375rem;
+            height: 0.375rem;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--foreground);
+        }
+
+        .product-action-btn {
+            padding: 0.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-action-btn:hover {
+            background-color: #003d7a;
+        }
+
+        .comparison-bar {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            z-index: 40;
+            max-width: 28rem;
+            width: calc(100% - 3rem);
+            display: none;
+        }
+
+        .comparison-bar.active {
+            display: block;
+        }
+
+        .comparison-bar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .comparison-bar-text p:first-child {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+        }
+
+        .comparison-bar-text p:last-child {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--foreground);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--secondary-foreground);
+            padding: 4rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 80rem;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            grid-column: span 1;
+        }
+
+        .footer-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand-icon {
+            width: 2rem;
+            height: 2rem;
+            background-color: white;
+            border-radius: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .footer-brand-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-column h4 {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .hero-slide-image {
+                width: 100%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-arrow-btn {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.25rem;
+            }
+
+            .tuf-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">∆</div>
+                <span class="logo-text">ASUS</span>
+            </a>
+
+            <div class="nav-links" id="desktopNav">
+                <a href="#products">Laptops</a>
+                <a href="#gaming">Gaming</a>
+                <a href="#accessories">Accessories</a>
+            </div>
+
+            <div class="nav-icons">
+                <button class="nav-icon-btn" title="Search">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="nav-icon-btn mobile-menu-toggle" id="mobileMenuToggle" title="Menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#products">Laptops</a>
+            <a href="#gaming">Gaming</a>
+            <a href="#accessories">Accessories</a>
+        </div>
+    </nav>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+        <div class="hero-slide active" data-index="0">
+            <div class="hero-slide-image">
+                <img src="/rog-zephyrus-g16.jpg" alt="ROG Zephyrus G16">
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">Ultimate Gaming Performance</div>
+                    <h1 class="hero-title">ROG Zephyrus G16</h1>
+                    <p class="hero-description">Intel Core i9 | RTX 4090 | 165Hz Display</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Learn More</button>
+                        <button class="btn btn-secondary">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slide" data-index="1">
+            <div class="hero-slide-image">
+                <img src="/zenbook-s13-oled.jpg" alt="ASUS Zenbook S 13 OLED">
+            </div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">Pure Elegance Redefined</div>
+                    <h1 class="hero-title">ASUS Zenbook S 13 OLED</h1>
+                    <p class="hero-description">Snapdragon X Elite | 13" OLED Touch | Ultra-Thin Design</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Learn More</button>
+                        <button class="btn btn-secondary">Explore</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-indicators" id="indicators"></div>
+        <button class="hero-arrow-btn prev" id="prevBtn" title="Previous slide">&#8249;</button>
+        <button class="hero-arrow-btn next" id="nextBtn" title="Next slide">&#8250;</button>
+    </section>
+
+    <!-- TUF Gaming Section -->
+    <section class="tuf-section" id="gaming">
+        <div class="tuf-container">
+            <div class="section-header">
+                <div class="section-badge">Gaming Excellence</div>
+                <h2 class="section-title">TUF Gaming A16</h2>
+                <p class="section-subtitle">Built for endurance. Engineered for performance.</p>
+            </div>
+
+            <div class="tuf-grid">
+                <!-- Left Specs -->
+                <div class="tuf-specs">
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M2 12h20"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>AMD Ryzen 7 7445HS</h3>
+                            <p>Next-gen processing power with 8 cores</p>
+                        </div>
+                    </div>
+
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                <polyline points="13 2 13 9 20 9"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>NVIDIA RTX 4050</h3>
+                            <p>12GB GDDR6 for stunning graphics</p>
+                        </div>
+                    </div>
+
+                    <div class="spec-item">
+                        <div class="spec-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>MIL-STD-810H</h3>
+                            <p>Military-grade durability testing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Product Card -->
+                <div class="tuf-card" id="tufCard">
+                    <div class="tuf-image-container">
+                        <img src="/tuf-gaming-a16.jpg" alt="TUF Gaming A16">
+                    </div>
+                    <h3>TUF Gaming A16</h3>
+                    <p class="model-year">2025/2026 Model</p>
+                    <span class="tuf-display-badge">165Hz Display</span>
+                </div>
+
+                <!-- Right Metrics -->
+                <div class="tuf-metrics">
+                    <div class="metric">
+                        <div class="metric-header">
+                            <span class="metric-label">Performance</span>
+                            <span class="metric-value">95%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric">
+                        <div class="metric-header">
+                            <span class="metric-label">Durability</span>
+                            <span class="metric-value">98%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 98%"></div>
+                        </div>
+                    </div>
+
+                    <div class="metric">
+                        <div class="metric-header">
+                            <span class="metric-label">Thermal Control</span>
+                            <span class="metric-value">92%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary tuf-compare-btn">Compare Specs</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="products-section" id="products">
+        <div class="products-container">
+            <div class="section-header">
+                <div class="section-badge">Our Collection</div>
+                <h2 class="section-title">Precision Engineered</h2>
+                <p class="section-subtitle">Discover our complete lineup of premium laptops for every need</p>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+
+            <div class="comparison-bar" id="comparisonBar">
+                <div class="comparison-bar-content">
+                    <div class="comparison-bar-text">
+                        <p>Selected for comparison</p>
+                        <p id="compareCount">0 products</p>
+                    </div>
+                    <button class="btn btn-primary">Compare Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <div class="footer-brand-icon">∆</div>
+                        <span class="footer-brand-text">ASUS</span>
+                    </div>
+                    <p class="footer-tagline">In Search of Incredible</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="Facebook">f</a>
+                        <a href="#" class="social-link" title="Twitter">𝕏</a>
+                        <a href="#" class="social-link" title="LinkedIn">in</a>
+                        <a href="#" class="social-link" title="Instagram">📷</a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">ROG Gaming</a></li>
+                        <li><a href="#">Zenbook</a></li>
+                        <li><a href="#">VivoBook</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Drivers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Service Centers</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 ASUS Computer Inc. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Data
+        const products = [
+            {
+                id: 1,
+                title: 'Zenbook Pro',
+                category: 'For Creators',
+                specs: ['Intel Core i9', 'RTX 4070', '32GB RAM'],
+                price: '$2,499',
+                badge: 'Featured',
+                image: '/zenbook-pro.jpg',
+            },
+            {
+                id: 2,
+                title: 'ROG Zephyrus M16',
+                category: 'For Gaming',
+                specs: ['Intel Core i9', 'RTX 4070 Super', '32GB RAM'],
+                price: '$2,799',
+                badge: 'Gaming',
+                image: '/rog-zephyrus-g16.jpg',
+            },
+            {
+                id: 3,
+                title: 'VivoBook 15',
+                category: 'For Work',
+                specs: ['AMD Ryzen 7', 'Radeon Graphics', '16GB RAM'],
+                price: '$899',
+                badge: 'Value',
+                image: '/vivobook-15.jpg',
+            },
+            {
+                id: 4,
+                title: 'ExpertBook B9',
+                category: 'For Work',
+                specs: ['Intel Core i7', 'Integrated Graphics', '32GB RAM'],
+                price: '$1,899',
+                badge: 'Professional',
+                image: '/expertbook-b9.jpg',
+            },
+            {
+                id: 5,
+                title: 'ROG Strix G16',
+                category: 'For Gaming',
+                specs: ['Intel Core i9 HX', 'RTX 4090', '32GB RAM'],
+                price: '$3,299',
+                badge: 'Ultimate',
+                image: '/rog-strix-g16.jpg',
+            },
+            {
+                id: 6,
+                title: 'Zenbook Duo',
+                category: 'For Creators',
+                specs: ['Intel Core i7', 'OLED Dual Display', '32GB RAM'],
+                price: '$2,199',
+                badge: 'Innovation',
+                image: '/zenbook-duo.jpg',
+            },
+        ];
+
+        let compareItems = [];
+
+        // Render Products
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <div class="product-info">
+                                <span class="product-badge">${product.badge}</span>
+                                <h3>${product.title}</h3>
+                                <p class="product-category">${product.category}</p>
+                            </div>
+                            <button class="compare-btn" onclick="toggleCompare(${product.id})">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="product-specs">
+                            ${product.specs.map(spec => `
+                                <div class="spec">
+                                    <div class="spec-dot"></div>
+                                    <span>${spec}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="product-footer">
+                            <span class="product-price">${product.price}</span>
+                            <button class="product-action-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCompare(id) {
+            const index = compareItems.indexOf(id);
+            if (index > -1) {
+                compareItems.splice(index, 1);
+            } else {
+                compareItems.push(id);
+            }
+            updateComparison();
+            renderProducts();
+        }
+
+        function updateComparison() {
+            const bar = document.getElementById('comparisonBar');
+            const count = document.getElementById('compareCount');
+            if (compareItems.length > 0) {
+                bar.classList.add('active');
+                count.textContent = `${compareItems.length} product${compareItems.length !== 1 ? 's' : ''}`;
+            } else {
+                bar.classList.remove('active');
+            }
+        }
+
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
+        let autoPlayTimer;
+
+        function createIndicators() {
+            const container = document.getElementById('indicators');
+            for (let i = 0; i < totalSlides; i++) {
+                const btn = document.createElement('button');
+                btn.className = `indicator ${i === 0 ? 'active' : ''}`;
+                btn.onclick = () => goToSlide(i);
+                container.appendChild(btn);
+            }
+        }
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            document.querySelectorAll('.indicator').forEach((ind, index) => {
+                ind.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+            resetAutoPlay();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide();
+            resetAutoPlay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+            resetAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayTimer);
+            startAutoPlay();
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 0) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        });
+
+        // TUF Card Hover
+        const tufCard = document.getElementById('tufCard');
+        tufCard?.addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 20px 50px rgba(0, 83, 155, 0.2)';
+            this.style.transform = 'scale(1.05)';
+        });
+
+        tufCard?.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+            this.style.transform = 'scale(1)';
+        });
+
+        // Initialize
+        createIndicators();
+        startAutoPlay();
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        renderProducts();
+
+        // Dark Mode Toggle (Optional)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
